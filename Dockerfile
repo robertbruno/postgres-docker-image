@@ -43,12 +43,6 @@ ENV LANG en_US.utf8
 # Set timezone
 RUN ln -snf "/usr/share/zoneinfo/${TZ}" /etc/localtime && echo "${TZ}" > /etc/timezone
 
-# compile pgqr
-# https://github.com/AbdulYadi/pgqr
-WORKDIR /usr/local/pgqr
-COPY extensions/pgqr .
-RUN  make && make install
-
 # compile pg-safeupdate
 # https://github.com/eradman/pg-safeupdate
 WORKDIR /usr/local/pg-safeupdate

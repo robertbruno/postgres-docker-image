@@ -8,9 +8,7 @@ Las características principales de esta imagen son:
 
 * **[postgis](https://postgis.net/)** PostGIS es una extensión de la base de datos PostgreSQL que agrega capacidades espaciales , convirtiendo a PostgreSQL en una base de datos espacial.
 
-* **plperl** PL/Perl es un lenguaje de procedimientos cargable que le permite escribir funciones y procedimientos de PostgreSQL en el lenguaje de programación Perl. vienen pre-instalado los siguiente modulos [libwww-perl](https://metacpan.org/dist/libwww-perl) y [API::Google](https://metacpan.org/pod/API::Google)
-
-* **[pgr](https://github.com/AbdulYadi/pgqr)** Permite generar códigos QR desde dae de datos
+* **plperl** PL/Perl es un lenguaje de procedimientos cargable que le permite escribir funciones y procedimientos de PostgreSQL en el lenguaje de programación Perl. Vienen pre-instalado los siguiente modulos [libwww-perl](https://metacpan.org/dist/libwww-perl) y [API::Google](https://metacpan.org/pod/API::Google)
 
 * **[plpython3u](https://www.postgresql.org/docs/current/plpython.html)**  Es una extensión en PostgreSQL que le permite escribir funciones y procedimientos en Python. Puede que le interese leer sobre: [Python 2 vs. Python 3](https://www.postgresql.org/docs/9.2/plpython-python23.html)
 
