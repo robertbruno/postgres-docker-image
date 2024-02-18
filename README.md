@@ -1,48 +1,43 @@
 # postgres-docker-image
 
-Este repositorio contiene los recursos necesarios para la creacion de una imagen docker de postgresql para propositos generales. 
+General purpose postgresql docker image with some preloaded extensions.
 
-La imagen esta basada en la [oficial de postgres](https://hub.docker.com/_/postgres/) por lo que aplican las mismas caracteristicas.
+It is based on the [official postgres image](https://hub.docker.com/_/postgres/) por lo que aplican las mismas caracteristicas.
 
-Las características principales de esta imagen son:
+The main features of this image are:
 
-* **[postgis](https://postgis.net/)** PostGIS es una extensión de la base de datos PostgreSQL que agrega capacidades espaciales , convirtiendo a PostgreSQL en una base de datos espacial.
+* **[postgis](https://postgis.net/)** extends the capabilities of the PostgreSQL relational database by adding support for storing, indexing, and querying geospatial data.
 
-* **plperl** PL/Perl es un lenguaje de procedimientos cargable que le permite escribir funciones y procedimientos de PostgreSQL en el lenguaje de programación Perl. Vienen pre-instalado los siguiente modulos [libwww-perl](https://metacpan.org/dist/libwww-perl) y [API::Google](https://metacpan.org/pod/API::Google)
+* **plperl** PL/Perl is a loadable procedural language that enables you to write PostgreSQL functions and procedures in the Perl programming language.The following modules [libwww-perl](https://metacpan.org/dist/libwww-perl) and [API::Google](https://metacpan.org/pod/API::Google) come pre-installed.
 
-* **[plpython3u](https://www.postgresql.org/docs/current/plpython.html)**  Es una extensión en PostgreSQL que le permite escribir funciones y procedimientos en Python. Puede que le interese leer sobre: [Python 2 vs. Python 3](https://www.postgresql.org/docs/9.2/plpython-python23.html)
+* **[plpython3u](https://www.postgresql.org/docs/current/plpython.html)**  The PL/Python procedural language allows PostgreSQL functions and procedures to be written in the Python language.
 
-  En migraciones de postgres inferiores a 14 debe crear esta extension de la siguiente forma:
-  ```sql
-  CREATE EXTENSION plpython3u;
-  ```
+> **Security Considerations:** PL/Python is considered an untrusted language in PostgreSQL because Python code executed through it can access the host machine's file system. There is no built-in mechanism to restrict this access, so caution should be used when using PL/Python functions.
 
-  > **Consideraciones de seguridad:** PL/Python se considera un lenguaje no confiable en PostgreSQL porque el código Python ejecutado a través de él puede acceder al sistema de archivos de la máquina host. No existe ningún mecanismo incorporado para restringir este acceso, por lo que se debe tener precaución al utilizar funciones de PL/Python.
-
-* **[pg-safeupdate](https://github.com/eradman/pg-safeupdate)** es una extensión simple de PostgreSQL que genera un error si se ejecutan UPDATE y DELETE sin especificar condiciones (WHERE). Esta extensión se diseñó inicialmente para proteger los datos de la eliminación accidental de datos en los que PostgREST puede escribir.
+* **[pg-safeupdate](https://github.com/eradman/pg-safeupdate)** is a simple PostgreSQL extension that generates an error if UPDATE and DELETE are executed without specifying conditions (WHERE). This extension was initially designed to protect data from accidentally deleting data that PostgREST can write to.
 
 ## Build
 
-Esta seccion indica los pasos para construir la imagen de postgres en base al [Dockerfile](Dockerfile), donde **postgresql-docker-image** es el nombre de la imagen a generar y **latest** es la tag. Los requerimientos necesarios para construir la imagen son:
+This section indicates the steps to build the postgres image based on [Dockerfile](Dockerfile), where **postgresql-docker-image** is the name of the image to be generated and **latest** is the tag. The necessary requirements to build the image are:
 
 * **docker**
 
-Para la última versión use el dockerfile por defecto.
+For the latest version use the default dockerfile.
 
 ```bash
-# clone local del repositorio
+# clone local repo
 git clone https://github.com/robertbruno/postgres-docker-image
 
-# ingresamos a la raíz del proyecto.
+# We enter the root of the project.
 cd postgres-docker-image
 
-# ejecutamos el buil de la imagenes
+# we execute the image build
 docker build -t postgres-docker-image -f Dockerfile .
 ```
 
 ### Use
 
-Puede hacer uso de las imágenes ya publicadas:
+You can use the images already published:
 
 ```bash
 mkdir -p ~/docker/volume/postgres && \
@@ -51,9 +46,9 @@ mkdir -p ~/docker/volume/postgres && \
     robertbruno/postgres-docker-image:latest
 ```
 
-> Es importante que defina un volumen para la data del servidor de lo contrario perdera los cambios al terminar la ejecucióń del contenedor.
+> It is important that you define a volume for the server data otherwise you will lose the changes when the container execution ends.
 
-Puede indicar datos de conexion diferentes
+You can indicate different connection information
 
 ```bash
 mkdir -p ~/docker/volume/postgres && \
@@ -67,8 +62,7 @@ mkdir -p ~/docker/volume/postgres && \
 
 ### Backup
 
-Deberá ejecutar el siguiente comando y reemplazar los valores necesarios:
-
+You will need to run the following command and replace the necessary values:
 ```bash
  docker exec -t container_id \
  pg_dump  --port 5432   --username my_user_name \
@@ -78,11 +72,10 @@ Deberá ejecutar el siguiente comando y reemplazar los valores necesarios:
 
 ### Restore
 
-Teniendo un respaldo en formato sql, puede ejecutarlo en su contenedor  ejecutando el siguiente comando y reeplazando los valores necesarios:
-
+Having a backup in sql format, you can run it in your container by running the following command and replacing the necessary values:
 ```bash
 cat ~/restore.sql  | docker exec -i container_id psql > -U < user > -d < database >
 ```
-> Para mayor información  visite:
+> PaFor more information visit:
 >
 > * [Postgres docker](https://hub.docker.com/_/postgres)
