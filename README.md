@@ -2,7 +2,7 @@
 
 General purpose postgresql docker image with some preloaded extensions.
 
-It is based on the [official postgres image](https://hub.docker.com/_/postgres/) por lo que aplican las mismas caracteristicas.
+It is based on the [official postgres image](https://hub.docker.com/_/postgres/) so the same characteristics apply.
 
 The main features of this image are:
 
