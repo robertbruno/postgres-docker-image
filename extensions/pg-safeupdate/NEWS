@@ -1,0 +1,31 @@
+= Next Release: 1.5
+
+ -
+
+= Release History
+
+== 1.4: June 3, 2021
+
+ - Correct invocation of 'errmsg()'
+ - Adapt build for PostgreSQL 14
+
+== 1.3:  September 25, 2019
+
+ - Move hosting from bitbucket.org to github.com
+ - Rename tag names from pg-safeupdate-X.Y to X.Y
+
+== 1.2: June 11, 2019
+
+ - GUC for disabling the extension using 'SET safeupdate.enable=0'
+
+== 1.1: July 24, 2017
+
+ - Evaluate common table expressions (CTE) that attempt to modify data
+
+== 1.0: July 28, 2016
+
+ - Initial concept https://bitbucket.org/eradman/safeupdate
+ - safeupdate, a extension to require a WHERE clause for UPDATE and DELETE
+ - Use jointree instead of matching on substrings (based on delete_needs_where.c
+   by Robert Haas)
+
