@@ -64,7 +64,7 @@ mkdir -p ~/docker/volume/postgres && \
 
 You will need to run the following command and replace the necessary values:
 ```bash
- docker exec -t container_id \
+ docker exec -t < container id > \
  pg_dump  --port 5432   --username my_user_name \
  --no-password --format plain --encoding UTF8 \
   dbname  >  backup_postgresql_`date +%d-%m-%Y"_"%H_%M_%S`.sql
@@ -74,7 +74,7 @@ You will need to run the following command and replace the necessary values:
 
 Having a backup in sql format, you can run it in your container by running the following command and replacing the necessary values:
 ```bash
-cat ~/restore.sql  | docker exec -i container_id psql > -U < user > -d < database >
+cat ~/restore.sql  | docker exec -i < container id > psql > -U < user > -d < database >
 ```
 > PaFor more information visit:
 >
