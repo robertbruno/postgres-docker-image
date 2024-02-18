@@ -1,0 +1,7 @@
+.*.swp
+*.orig
+.DS_Store
+*.test
+
+.history
+nohup.out
