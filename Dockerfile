@@ -43,6 +43,28 @@ ENV LANG en_US.utf8
 # Set timezone
 RUN ln -snf "/usr/share/zoneinfo/${TZ}" /etc/localtime && echo "${TZ}" > /etc/timezone
 
+# compile pgqr
+# https://github.com/AbdulYadi/pgqr
+WORKDIR /usr/local/pgqr
+COPY extensions/pgqr .
+RUN  make && make install
+
+# compile pg-safeupdate
+# https://github.com/eradman/pg-safeupdate
+WORKDIR /usr/local/pg-safeupdate
+COPY extensions/pg-safeupdate .
+RUN  gmake && gmake install
+
+# add wait-for-sh
+# https://github.com/vishnubob/wait-for-it
+COPY scripts/wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+
+# init scripts
+RUN mkdir -p /docker-entrypoint-initdb.d
+COPY scripts/initdb.sh /docker-entrypoint-initdb.d/initdb.sh
+COPY scripts/update-postgis.sh /usr/local/bin
+
 # clean
 RUN apt remove -y make gcc build-essential postgresql-server-dev-$POSTGRES_VERSION wget\
       && apt-get clean \
