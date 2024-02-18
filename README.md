@@ -8,7 +8,7 @@ The main features of this image are:
 
 * **[postgis](https://postgis.net/)** extends the capabilities of the PostgreSQL relational database by adding support for storing, indexing, and querying geospatial data.
 
-* **plperl** PL/Perl is a loadable procedural language that enables you to write PostgreSQL functions and procedures in the Perl programming language.The following modules [libwww-perl](https://metacpan.org/dist/libwww-perl) and [API::Google](https://metacpan.org/pod/API::Google) come pre-installed.
+* **[plperl](https://www.postgresql.org/docs/current/plperl.html)** PL/Perl is a loadable procedural language that enables you to write PostgreSQL functions and procedures in the Perl programming language.The following modules [libwww-perl](https://metacpan.org/dist/libwww-perl) and [API::Google](https://metacpan.org/pod/API::Google) come pre-installed.
 
 * **[plpython3u](https://www.postgresql.org/docs/current/plpython.html)**  The PL/Python procedural language allows PostgreSQL functions and procedures to be written in the Python language.
 
