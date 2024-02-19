@@ -16,6 +16,15 @@ The main features of this image are:
 
 * **[pg-safeupdate](https://github.com/eradman/pg-safeupdate)** is a simple PostgreSQL extension that generates an error if UPDATE and DELETE are executed without specifying conditions (WHERE). This extension was initially designed to protect data from accidentally deleting data that PostgREST can write to.
 
+>  Make this mandatory for all databases and connections by adding the following to postgresql.conf:
+```bash
+shared_preload_libraries=safeupdate
+```
+> Once loaded this extension can be administratively disabled by setting
+```sql
+SET safeupdate.enabled=0;
+```
+
 * **[wait-for-it.sh](https://github.com/vishnubob/wait-for-it)** is a pure bash script that will wait on the availability of a host and TCP port
 
 ## Build
