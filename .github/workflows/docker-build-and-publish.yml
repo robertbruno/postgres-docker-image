@@ -32,7 +32,7 @@ jobs:
           tags: ${{ env.TEST_TAG }}
       - name: Test
         run: |
-          docker run --rm -e POSTGRES_PASSWORD=test ${{ env.TEST_TAG }}
+          docker run --rm -e POSTGRES_PASSWORD=test -e RUN_TEST=true ${{ env.TEST_TAG }}
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
