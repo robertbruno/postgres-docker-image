@@ -16,6 +16,8 @@ The main features of this image are:
 
 * **[pg-safeupdate](https://github.com/eradman/pg-safeupdate)** is a simple PostgreSQL extension that generates an error if UPDATE and DELETE are executed without specifying conditions (WHERE). This extension was initially designed to protect data from accidentally deleting data that PostgREST can write to.
 
+* **[wait-for-it.sh](https://github.com/vishnubob/wait-for-it)** is a pure bash script that will wait on the availability of a host and TCP port
+
 ## Build
 
 This section indicates the steps to build the postgres image based on [Dockerfile](Dockerfile), where **postgresql-docker-image** is the name of the image to be generated and **latest** is the tag. The necessary requirements to build the image are:
