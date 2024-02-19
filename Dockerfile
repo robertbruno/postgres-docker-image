@@ -64,7 +64,7 @@ COPY scripts/update-postgis.sh /usr/local/bin
 RUN apt remove -y make gcc build-essential postgresql-server-dev-$POSTGRES_VERSION wget\
       && apt-get clean \
       && rm -rf /var/lib/apt/lists/* \
-      && rm -rf /usr/local/pg_amqp 
+      && rm -rf /usr/local/pg-safeupdate
 
 EXPOSE ${POSTGRES_PORT}
 
