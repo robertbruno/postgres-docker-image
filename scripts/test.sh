@@ -4,9 +4,9 @@ set -e
 # If the DEBUG variable exists, the commands and their arguments will be displayed as they are executed.
 [ -n "${DEBUG:-}" ] && set -x
 
-if [[ -Z "$RUN_TEST"  ]]; then
-echo "skiping tests."
-exit 0
+if [[ -z "$RUN_TEST" ]]; then
+    echo "skiping tests."
+    exit 0
 fi
 
 export PSQL=${PSQL:-"psql -v ON_ERROR_STOP=1 -U $POSTGRES_USER -d $POSTGRES_DB"}
