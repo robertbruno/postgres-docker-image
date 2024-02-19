@@ -29,6 +29,11 @@ $PSQL <<-EOSQL
     CREATE TABLE my_schema.my_spatial_table (id serial);
 
     SELECT AddGeometryColumn ('my_schema','my_spatial_table','geom',4326,'POINT',2);
+
+    CREATE EXTENSION pg_cron;
+
+    SELECT  cron.schedule('delete-job-run-details', '0 12 * * *', $$DELETE FROM cron.job_run_details WHERE end_time < now() - interval '30 days'$$);
+
 EOSQL
 
 # reatart db
