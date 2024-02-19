@@ -11,7 +11,11 @@ fi
 
 export PSQL=${PSQL:-"psql -v ON_ERROR_STOP=1 -U $POSTGRES_USER -d $POSTGRES_DB"}
 
-echo "Run tests..."
+until pg_isready -U $POSTGRES_USER -d $POSTGRES_DB; do
+    echo "Waiting for postgres to run tests......" && sleep 5;
+done;
+
+echo "Runing tests..."
 
 $PSQL <<-EOSQL
     SELECT NOW();
@@ -30,3 +34,4 @@ EOSQL
 # reatart db
 pg_ctl -D $PGDATA stop
 
+exit 0
