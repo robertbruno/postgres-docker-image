@@ -47,6 +47,3 @@ $PSQL <<-EOSQL
 	CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder;
 EOSQL
 done
-
-echo "Setting [udp_send]..."
-$PSQL -f /usr/local/pg_udp_send/udp_send.sql
