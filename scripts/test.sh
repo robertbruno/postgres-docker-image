@@ -26,8 +26,6 @@ $PSQL <<-EOSQL
 
     SELECT AddGeometryColumn ('my_schema','my_spatial_table','geom',4326,'POINT',2);
 EOSQL
-done
-
 
 # reatart db
 pg_ctl -D $PGDATA stop

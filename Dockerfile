@@ -57,7 +57,7 @@ RUN chmod +x /wait-for-it.sh
 # init scripts
 RUN mkdir -p /docker-entrypoint-initdb.d
 COPY scripts/initdb.sh /docker-entrypoint-initdb.d/initdb.sh
-COPY scripts/test.sh /docker-entrypoint-initdb.d/test.sh
+COPY scripts/test.sh /docker-entrypoint-initdb.d/zzzz-test.sh
 COPY scripts/update-postgis.sh /usr/local/bin
 
 # clean
